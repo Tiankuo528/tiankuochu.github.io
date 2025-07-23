@@ -3,67 +3,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('sendButton');
     const chatWindow = document.querySelector('.chat-window');
     const suggestionChips = document.querySelectorAll('.chip');
-    const thinkingIndicator = document.createElement('div');
-    thinkingIndicator.className = 'chat-message bot';
-    thinkingIndicator.innerHTML = '<p>Thinking...</p>';
+    const botLabelName = "TIANKUO (BOT):";
 
-    const sendMessage = async () => {
-        const userText = userInput.value.trim();
+    // --- Customize Bot Responses Here ---
+    const botResponses = {
+        "what is your background?": "I am a Software Engineer with a Master's degree in Computer Science from Stevens Institute of Technology. I have experience in full-stack development and cloud technologies.",
+        "tell me about your projects": "One of my key projects involved developing a machine learning application to predict stock prices. I've also worked on a full-stack e-commerce website. You can find more details on my GitHub profile!",
+        "what are your technical skills?": "My skills include JavaScript, Python, React, Node.js, and cloud platforms like AWS and Google Cloud.",
+        "where did you study?": "I completed my Master's in Computer Science at Stevens Institute of Technology and my Bachelor's at Beijing University of Technology.",
+        "default": "That's a great question! For more specific details, feel free to check out my LinkedIn or GitHub profiles, or ask me something else about my background, projects, or skills."
+    };
+    // ------------------------------------
+
+    const getBotResponse = (userText) => {
+        const lowerCaseText = userText.toLowerCase().replace(/[?]/g, '');
+        return botResponses[lowerCaseText] || botResponses["default"];
+    };
+
+    const sendMessage = (question) => {
+        const userText = question || userInput.value.trim();
         if (userText === "") return;
 
         appendMessage(userText, 'user');
-        userInput.value = '';
-        chatWindow.appendChild(thinkingIndicator);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-
-        try {
-            // Call our backend API
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt: userText })
-            });
-
-            if (!response.ok) {
-                throw new Error('Something went wrong on the server.');
-            }
-
-            const data = await response.json();
-            const botResponse = data.reply;
-            
-            chatWindow.removeChild(thinkingIndicator); // Remove "Thinking..."
-            appendMessage(botResponse, 'bot');
-
-        } catch (error) {
-            console.error("Error:", error);
-            chatWindow.removeChild(thinkingIndicator);
-            appendMessage("Sorry, I'm having trouble connecting to my brain right now. Please try again later.", 'bot');
+        if (!question) {
+            userInput.value = '';
         }
+
+        // Simulate bot thinking
+        setTimeout(() => {
+            const botReply = getBotResponse(userText);
+            appendMessage(botReply, 'bot');
+        }, 1000);
     };
 
     const appendMessage = (text, type) => {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('chat-message', type);
-        
-        const p = document.createElement('p');
-        p.innerText = text;
-        messageDiv.appendChild(p);
 
         if (type === 'bot') {
             const botLabel = document.createElement('span');
             botLabel.className = 'bot-label';
-            botLabel.innerText = 'FIONA (BOT):'; // Change to your name
-            messageDiv.prepend(botLabel);
+            botLabel.innerText = botLabelName;
+            messageDiv.appendChild(botLabel);
         }
+
+        const p = document.createElement('p');
+        p.innerText = text;
+        messageDiv.appendChild(p);
 
         chatWindow.appendChild(messageDiv);
         chatWindow.scrollTop = chatWindow.scrollHeight;
     };
 
-    // Event Listeners
-    sendButton.addEventListener('click', sendMessage);
+    // --- Event Listeners ---
+    sendButton.addEventListener('click', () => sendMessage());
+
     userInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             sendMessage();
@@ -73,8 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     suggestionChips.forEach(chip => {
         chip.addEventListener('click', () => {
             const question = chip.getAttribute('data-question');
-            userInput.value = question;
-            sendMessage();
+            sendMessage(question);
         });
     });
 });
