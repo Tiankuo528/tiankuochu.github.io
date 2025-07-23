@@ -1,41 +1,68 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Bot | 你的名字</title>
+    <title>Tiankuo Chu | Your Title</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div class="container">
+        <header class="header">
+            <div class="header-left">
+                 <span class="header-name">Tiankuo Chu</span>
+                <span class="header-title">/ Software Engineer</span>
+            </div>
+            <nav class="header-nav">
+                <a href="#" class="nav-link active">Main</a>
+                <a href="#" class="nav-link">Resume</a>
+                <a href="#" class="nav-link">Skills</a>
+            </nav>
+        </header>
+
+        <div class="profile-card">
+            <img src="https://avatars.githubusercontent.com/u/10188439?v=4" alt="Tiankuo Chu" class="profile-avatar">
+            <h1 class="profile-name">Tiankuo Chu</h1>
+            <p class="profile-job-title">Software Engineer</p>
+            <div class="profile-links">
+                <a href="https://www.linkedin.com/in/tiankuo-chu-968715135/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/tiankuochu" target="_blank">GitHub</a>
+            </div>
+        </div>
+
         <div class="chatbot-container">
             <div class="chatbot-header">
-                <h2>🤖 向我的AI分身提问</h2>
-                <p>你好！我是[你的名字]的AI分身。你可以问我任何关于他的背景、项目和经验的问题。</p>
+                 <h2>🤖 Ask Anything About Tiankuo</h2>
+                <p>Get instant answers about my background, projects, and experience</p>
             </div>
 
             <div class="chat-window">
+                 <div class="chat-message bot">
+                    <span class="bot-label">TIANKUO (BOT):</span>
+                    <p>Hi! I'm Tiankuo's digital assistant. Ask me anything about his background, skills, or projects!</p>
                 </div>
+            </div>
 
             <div class="suggestion-chips">
-                <button class="chip" data-question="你的背景是什么？">你的背景是什么？</button>
-                <button class="chip" data-question="介绍一下你的项目">介绍一下你的项目</button>
-                <button class="chip" data-question="你的技术栈有哪些？">你的技术栈有哪些？</button>
+                <button class="chip" data-question="What is your background?">What is your background?</button>
+                <button class="chip" data-question="Tell me about your projects">Tell me about your projects</button>
+                <button class="chip" data-question="What are your technical skills?">What are your technical skills?</button>
+                <button class="chip" data-question="Where did you study?">Where did you study?</button>
             </div>
 
             <div class="chat-input-area">
-                <input type="text" id="userInput" placeholder="输入你的问题...">
+                 <input type="text" id="userInput" placeholder="Ask me anything about Tiankuo...">
                 <button id="sendButton">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/>
-                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/></svg>
                 </button>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
