@@ -3,49 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('sendButton');
     const chatWindow = document.querySelector('.chat-window');
     const suggestionChips = document.querySelectorAll('.chip');
-    // UPDATE THIS: Change the bot name
     const botLabelName = "TIANKUO (BOT):";
 
-    // Function to handle sending a message
-    const sendMessage = async (question) => {
+    // --- Customize Bot Responses Here ---
+    const botResponses = {
+        "what is your background?": "I am a Software Engineer with a Master's degree in Computer Science from Stevens Institute of Technology. I have experience in full-stack development and cloud technologies.",
+        "tell me about your projects": "One of my key projects involved developing a machine learning application to predict stock prices. I've also worked on a full-stack e-commerce website. You can find more details on my GitHub profile!",
+        "what are your technical skills?": "My skills include JavaScript, Python, React, Node.js, and cloud platforms like AWS and Google Cloud.",
+        "where did you study?": "I completed my Master's in Computer Science at Stevens Institute of Technology and my Bachelor's at Beijing University of Technology.",
+        "default": "That's a great question! For more specific details, feel free to check out my LinkedIn or GitHub profiles, or ask me something else about my background, projects, or skills."
+    };
+    // ------------------------------------
+
+    const getBotResponse = (userText) => {
+        const lowerCaseText = userText.toLowerCase().replace(/[?]/g, '');
+        return botResponses[lowerCaseText] || botResponses["default"];
+    };
+
+    const sendMessage = (question) => {
         const userText = question || userInput.value.trim();
         if (userText === "") return;
 
-        // Display user's message
         appendMessage(userText, 'user');
         if (!question) {
             userInput.value = '';
         }
 
-        // Show a "thinking..." indicator
-        const thinkingMessage = appendMessage('...', 'bot');
-
-        try {
-            // Call your backend API endpoint
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt: userText })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Failed to get a response.');
-            }
-
-            const data = await response.json();
-            // Update the "thinking" message with the actual reply
-            thinkingMessage.querySelector('p').innerText = data.reply;
-
-        } catch (error) {
-            console.error("Error:", error);
-            thinkingMessage.querySelector('p').innerText = "Sorry, I'm having trouble connecting right now. Please try again later.";
-        }
+        // Simulate bot thinking
+        setTimeout(() => {
+            const botReply = getBotResponse(userText);
+            appendMessage(botReply, 'bot');
+        }, 1000);
     };
 
-    // Function to add a message to the chat window
     const appendMessage = (text, type) => {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('chat-message', type);
@@ -62,9 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.appendChild(p);
 
         chatWindow.appendChild(messageDiv);
-        // Auto-scroll to the latest message
         chatWindow.scrollTop = chatWindow.scrollHeight;
-        return messageDiv; // Return the element so we can update it
     };
 
     // --- Event Listeners ---
