@@ -6,7 +6,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// The 'config' block has been removed to use the default Node.js runtime.
+// The 'config' block has been REMOVED to use the default Node.js runtime.
 
 export default async function handler(req, res) {
   // Using 'res' (response) object for Node.js runtime
