@@ -1,27 +1,171 @@
 :root {
-    --bg-color: #121212;
-    --primary-card-bg: #1e1e1e;
-    --secondary-card-bg: #2a2a2a;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent-color: #007bff;
-    --border-color: #333333;
+    --bg-color: #0d1117;
+    --primary-card-bg: #161b22;
+    --secondary-card-bg: #21262d;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-color: #58a6ff;
+    --border-color: #30363d;
 }
-body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-.container { width: 100%; max-width: 700px; }
-.chatbot-container { background-color: var(--primary-card-bg); border-radius: 20px; padding: 30px; margin-top: 30px; border: 1px solid var(--border-color); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
-.chatbot-header { text-align: center; margin-bottom: 20px; }
-.chatbot-header h2 { margin: 0; font-size: 1.5rem; }
-.chatbot-header p { color: var(--text-secondary); margin-top: 5px; }
-.chat-window { height: 300px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 15px; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: baseline;
+}
+
+.header-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.header-title {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-left: 8px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    margin-left: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: var(--text-primary);
+    border-bottom-color: var(--accent-color);
+}
+
+/* Profile Card */
+.profile-card {
+    background-color: var(--primary-card-bg);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.profile-job-title {
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-size: 1.1rem;
+}
+
+.profile-links {
+    margin-top: 20px;
+}
+
+.profile-links a {
+    text-decoration: none;
+    color: var(--accent-color);
+    margin: 0 15px;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.profile-links a:hover {
+    text-decoration: underline;
+}
+
+/* Chatbot */
+.chatbot-container {
+    background-color: var(--primary-card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.chatbot-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chatbot-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.chatbot-header p {
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.chat-window {
+    height: 250px;
+    overflow-y: auto;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-window::-webkit-scrollbar { width: 6px; }
+.chat-window::-webkit-scrollbar-track { background: var(--primary-card-bg); }
+.chat-window::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 20px; }
+
 .chat-message { max-width: 85%; padding: 10px 15px; border-radius: 15px; line-height: 1.5; word-wrap: break-word; }
 .chat-message p { margin: 0; }
-.chat-message.user { background-color: var(--accent-color); color: white; align-self: flex-end; border-bottom-right-radius: 5px; }
+.chat-message.user { background-color: var(--accent-color); color: #fff; align-self: flex-end; border-bottom-right-radius: 5px; }
 .chat-message.bot { background-color: var(--secondary-card-bg); align-self: flex-start; border-bottom-left-radius: 5px; }
-.suggestion-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-.chip { background-color: var(--secondary-card-bg); color: var(--text-primary); border: 1px solid var(--border-color); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: background-color 0.3s; }
-.chip:hover { background-color: #333; }
+.bot-label { font-weight: 700; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 5px; display: block; }
+
+.suggestion-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
+.chip { background-color: var(--secondary-card-bg); color: var(--text-primary); border: 1px solid var(--border-color); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: background-color 0.3s, border-color 0.3s; }
+.chip:hover { background-color: #333; border-color: #555; }
+
 .chat-input-area { display: flex; align-items: center; background-color: var(--secondary-card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 5px; }
 #userInput { flex-grow: 1; border: none; background: transparent; color: var(--text-primary); padding: 10px; font-size: 1rem; outline: none; }
 #sendButton { background-color: var(--accent-color); border: none; border-radius: 8px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: background-color 0.3s; }
-#sendButton:hover { background-color: #0056b3; }
+#sendButton:hover { background-color: #4895e0; }
