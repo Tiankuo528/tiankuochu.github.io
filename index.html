@@ -11,58 +11,79 @@
 </head>
 <body>
 
-    <div class="container">
-        <header class="header">
-            <div class="header-left">
-                <span class="header-name">Tiankuo Chu</span>
-                <span class="header-title">/ Machine Learning Engineer</span>
-            </div>
-            <nav class="header-nav">
-                <a href="#" class="nav-link active">Main</a>
-                <a href="#" class="nav-link">Resume</a>
-                <a href="#" class="nav-link">Skills</a>
-            </nav>
-        </header>
+    <div class="main-container">
 
-        <div class="profile-card">
-            <img src="https://avatars.githubusercontent.com/u/10188439?v=4" alt="Tiankuo Chu" class="profile-avatar">
-            <h1 class="profile-name">Tiankuo Chu</h1>
-            <p class="profile-job-title">Machine Learning Engineer</p>
-            <div class="profile-links">
-                <a href="https://www.linkedin.com/in/tiankuo-chu-915855262/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/Tiankuo528" target="_blank">GitHub</a>
+        <section class="profile-section">
+            <div class="profile-left">
+                <img src="https://avatars.githubusercontent.com/u/10188439?v=4" alt="Tiankuo Chu" class="profile-photo">
+                [cite_start]<h1 class="profile-name">Tiankuo Chu [cite: 2]</h1>
+                <p class="profile-title">Machine Learning Engineer | [cite_start]PhD in Medical AI [cite: 8]</p>
+                <div class="profile-links">
+                    [cite_start]<a href="https://www.linkedin.com/in/TiankuoChu" target="_blank">LinkedIn [cite: 5, 6]</a>
+                    [cite_start]<a href="https://github.com/TiankuoChu" target="_blank">GitHub [cite: 6]</a>
+                </div>
             </div>
-        </div>
+            <div class="profile-right">
+                <div class="intro-card">
+                    <p>Welcome! [cite_start]I'm a Machine Learning Engineer and a Ph.D. candidate at the University of Delaware with a focus on Medical AI[cite: 8, 12, 13]. [cite_start]I have a passion for building scalable and trustworthy GenAI solutions for healthcare and industrial applications[cite: 10].</p>
+                    [cite_start]<p>My work includes leading the end-to-end deployment of production-grade LLM systems and publishing first-author research at top-tier conferences like ICLR[cite: 8, 9]. I thrive on tackling complex challenges at the intersection of advanced AI and real-world impact.</p>
+                </div>
+                <div class="contact-info">
+                    [cite_start]<span>📧 chutk@udel.edu [cite: 3]</span>
+                    [cite_start]<span>📍 Newark, DE, USA [cite: 4]</span>
+                </div>
+            </div>
+        </section>
 
-        <div class="chatbot-container">
+        <section class="chatbot-container">
             <div class="chatbot-header">
                 <h2>🤖 Ask Anything About Tiankuo</h2>
                 <p>Get instant answers about my background, projects, and experience</p>
             </div>
-
-            <div class="chat-window">
-                 <div class="chat-message bot">
-                    <span class="bot-label">TIANKUO (BOT):</span>
-                    <p>Hi! I'm Tiankuo's digital assistant. Ask me anything about his background, skills, or projects!</p>
-                </div>
-            </div>
-
-            <div class="suggestion-chips">
-                <p>Try asking:</p>
-                <button class="chip" data-question="What is your background?">What is your background?</button>
-                <button class="chip" data-question="Tell me about your projects">Tell me about your projects</button>
-                <button class="chip" data-question="What are your technical skills?">What are your technical skills?</button>
-                <button class="chip" data-question="Where did you study?">Where did you study?</button>
-                <button class="chip" data-question="Why are you a fit for [role]?">Why are you a fit for [role]?</button>
-            </div>
-
             <div class="chat-input-area">
                 <input type="text" id="userInput" placeholder="Ask me anything about Tiankuo...">
                 <button id="sendButton">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/></svg>
                 </button>
             </div>
-        </div>
+             <div class="suggestion-chips">
+                <p>Try asking:</p>
+                <button class="chip" data-question="What is your background?">What is your background?</button>
+                <button class="chip" data-question="Tell me about your projects">Tell me about your projects</button>
+                <button class="chip" data-question="What are your technical skills?">What are your technical skills?</button>
+                <button class="chip" data-question="Where did you study?">Where did you study?</button>
+            </div>
+            <div class="chat-window">
+                 <div class="chat-message bot">
+                    <span class="bot-label">TIANKUO (BOT):</span>
+                    <p>Hi! I'm Tiankuo's digital assistant. Ask me anything about his background, skills, or projects!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="work-section">
+            <h2 class="section-title">Selected Work</h2>
+            <p class="work-intro">My work focuses on developing and deploying robust machine learning systems, from large-scale data pipelines and MLOps infrastructure to novel foundation models for medical diagnosis. Below are a couple of highlights.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://i.imgur.com/gRe8P3X.png" alt="Abstract AI graph" class="project-image">
+                    <div class="project-info">
+                        [cite_start]<h3 class="project-title">GraphRAG + LORA System @ Dow [cite: 19, 21]</h3>
+                        [cite_start]<p class="project-description">Designed and deployed a production-grade LLM pipeline for root-cause analysis, featuring a LoRA-fine-tuned LLaMA 3-70B model with a Graph-based RAG system[cite: 25]. [cite_start]The full MLOps system was deployed on an H100 HPC cluster, achieving a 45% reduction in latency while serving over 1,000 queries per hour[cite: 26, 29, 30].</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://i.imgur.com/k9v9T5T.png" alt="Medical imaging scan" class="project-image">
+                    <div class="project-info">
+                        [cite_start]<h3 class="project-title">BoneMet: Medical Foundation Model [cite: 47, 52]</h3>
+                        [cite_start]<p class="project-description">Led the creation of BoneMet, the first AI-ready, open-source multimodal dataset for Breast Cancer Bone Metastasis, securing a \$300K NIH grant[cite: 48, 51]. [cite_start]I engineered a novel Spatial-Temporal Aligned Vision Transformer (STA-ViT) and fine-tuned a Multimodal Vision-Language Model (LLaVA), resulting in a first-author paper at ICLR 2025[cite: 53, 55, 56].</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script src="script.js"></script>
