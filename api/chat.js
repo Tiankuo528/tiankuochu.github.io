@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     If a question is outside of this scope, politely decline and guide the user back to professional topics. Keep your answers to a maximum of 3-4 sentences.`;
 
     const completion = await openai.chat.completions.create({
-      model: "GPT-4.1 Nano",
+      model: "gpt-4.1-nano",
       messages: [
         { "role": "system", "content": systemPrompt },
         { "role": "user", "content": prompt }
