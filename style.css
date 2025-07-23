@@ -26,30 +26,32 @@ body {
     gap: 40px;
 }
 
-/* --- Profile Section --- */
-.profile-section {
+/* --- Combined Top Section (Profile + Intro) --- */
+.top-section {
     display: flex;
     gap: 30px;
+    background-color: var(--primary-card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
 }
 
 .profile-left {
     flex-shrink: 0;
     width: 220px;
-    text-align: center;
+    text-align: left;
 }
 
 .profile-photo {
-    width: 150px;
-    height: 150px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    border: 3px solid var(--border-color);
     margin-bottom: 15px;
 }
 
 .profile-name { margin: 0; font-size: 1.8rem; }
-.profile-subtitle { margin: 5px 0 10px; font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; }
-.profile-title { margin: 0 0 15px; font-size: 1rem; color: var(--text-secondary); }
-.profile-links a { color: var(--accent-color); text-decoration: none; margin: 0 10px; }
+.profile-title { margin: 10px 0 15px; font-size: 1rem; color: var(--text-secondary); }
+.profile-links a { color: var(--accent-color); text-decoration: none; margin-right: 15px; }
 .profile-links a:hover { text-decoration: underline; }
 
 .profile-right {
@@ -59,10 +61,6 @@ body {
 }
 
 .intro-card {
-    background-color: var(--primary-card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 25px;
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text-secondary);
@@ -85,7 +83,7 @@ body {
     border-radius: 16px;
     padding: 30px;
 }
-.chatbot-header { text-align: center; margin-bottom: 20px; }
+.chatbot-header { text-align: left; margin-bottom: 20px; }
 .chatbot-header h2 { margin: 0; font-size: 1.5rem; }
 .chatbot-header p { color: var(--text-secondary); margin-top: 5px; }
 
@@ -94,8 +92,8 @@ body {
 #sendButton { background-color: var(--accent-color); border: none; border-radius: 8px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: background-color 0.3s; }
 #sendButton:hover { background-color: #4895e0; }
 
-.suggestion-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; align-items: center; }
-.suggestion-chips p { margin: 0 10px 0 0; font-size: 0.9rem; color: var(--text-secondary); }
+.suggestion-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; align-items: center; }
+.suggestion-chips p { display: none; } /* Hide the "Try asking:" text */
 .chip { background-color: var(--secondary-card-bg); color: var(--text-primary); border: 1px solid var(--border-color); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: background-color 0.3s; }
 .chip:hover { background-color: #333; }
 
