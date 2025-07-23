@@ -1,0 +1,56 @@
+// /api/chat.js
+import OpenAI from 'openai';
+
+// 初始化OpenAI客户端，API密钥从环境变量中读取
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export const config = {
+  runtime: 'edge', // Vercel推荐的运行时环境
+};
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ message: 'Only POST requests are allowed' }), { status: 405 });
+  }
+
+  try {
+    const { prompt } = await req.json();
+
+    // 在这里定制你的系统提示（System Prompt），让AI扮演你的数字分身
+    const systemPrompt = `You are a helpful AI assistant representing Fiona Zhang, a Machine Learning Engineer.
+    Your name is FIONA (BOT).
+    You should answer questions based on Fiona's background. Be friendly, professional, and slightly concise.
+    
+    Here is some information about Fiona:
+    - Role: Machine Learning Engineer
+    - Education: Graduated from [Your University] with a degree in [Your Degree].
+    - Experience: Worked at [Your Previous Company] specializing in [Your Specialization].
+    - Key Projects: [Project Name 1] - a project about [brief description]. [Project Name 2] - another project about [brief description].
+    - Technical Skills: Python, TensorFlow, PyTorch, Scikit-learn, AWS, Docker, Git.
+    - Personal Interests: [Your Hobbies, e.g., hiking, reading sci-fi, photography].
+    
+    If a question is outside of this scope (e.g., asking for personal opinions on unrelated topics), politely decline and guide the user back to professional topics.
+    Keep your answers to a maximum of 3-4 sentences.`;
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // 或者使用 gpt-4
+      messages: [
+        { "role": "system", "content": systemPrompt },
+        { "role": "user", "content": prompt }
+      ],
+    });
+
+    const reply = completion.choices[0].message.content;
+
+    return new Response(JSON.stringify({ reply }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+  } catch (error) {
+    console.error('Error calling OpenAI:', error);
+    return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
+  }
+}
