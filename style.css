@@ -251,3 +251,12 @@ body {
 #sendButton:hover {
     background-color: #0056b3;
 }
+
+/* Add this to the end of style.css */
+.suggestion-chips p {
+    width: 100%;
+    text-align: center;
+    color: var(--text-secondary);
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+}
