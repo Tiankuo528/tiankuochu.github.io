@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bot | 你的名字</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <h2>🤖 向我的AI分身提问</h2>
+                <p>你好！我是[你的名字]的AI分身。你可以问我任何关于他的背景、项目和经验的问题。</p>
+            </div>
+
+            <div class="chat-window">
+                </div>
+
+            <div class="suggestion-chips">
+                <button class="chip" data-question="你的背景是什么？">你的背景是什么？</button>
+                <button class="chip" data-question="介绍一下你的项目">介绍一下你的项目</button>
+                <button class="chip" data-question="你的技术栈有哪些？">你的技术栈有哪些？</button>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="userInput" placeholder="输入你的问题...">
+                <button id="sendButton">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
