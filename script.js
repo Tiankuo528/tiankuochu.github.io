@@ -3,30 +3,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('sendButton');
     const chatWindow = document.querySelector('.chat-window');
     const suggestionChips = document.querySelectorAll('.chip');
+    const thinkingIndicator = document.createElement('div');
+    thinkingIndicator.className = 'chat-message bot';
+    thinkingIndicator.innerHTML = '<p>Thinking...</p>';
 
-    // --- 在这里定制你的机器人回复 ---
-    const botResponses = {
-        "what is your background?": "I'm a Machine Learning Engineer with a passion for building intelligent systems. I graduated from [Your University] with a degree in [Your Degree]. My professional journey includes working at [Your Previous Company], where I specialized in [Your Specialization].",
-        "tell me about your projects": "Sure! One of my key projects is [Project Name], where I developed [Brief Description]. I used technologies like Python, TensorFlow, and Scikit-learn. You can find more details on my GitHub!",
-        "what are your technical skills?": "My technical skills include: \n- Languages: Python, Java, C++ \n- ML/DL Frameworks: TensorFlow, PyTorch, Scikit-learn \n- Tools: Docker, Git, Kubernetes \n- Cloud: AWS, Google Cloud Platform.",
-        "where did you study?": "I studied at [Your University] and earned a Bachelor of Science in Computer Science.",
-        "why are you a fit for [role]?": "I believe my experience in [mention a key skill from your resume] and my proven ability to [mention an achievement] make me a strong candidate for this role. I am passionate about [mention something relevant to the company/role] and eager to contribute to the team.",
-        "default": "That's a great question! I'm not programmed to answer that specifically yet. Try asking about my background, projects, or skills. You can also contact me through LinkedIn for more detailed inquiries."
-    };
-    // ------------------------------------
-
-    const sendMessage = () => {
+    const sendMessage = async () => {
         const userText = userInput.value.trim();
         if (userText === "") return;
 
-        // Display user message
         appendMessage(userText, 'user');
         userInput.value = '';
+        chatWindow.appendChild(thinkingIndicator);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
 
-        // Trigger bot response
-        setTimeout(() => {
-            getBotResponse(userText);
-        }, 1000);
+        try {
+            // Call our backend API
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt: userText })
+            });
+
+            if (!response.ok) {
+                throw new Error('Something went wrong on the server.');
+            }
+
+            const data = await response.json();
+            const botResponse = data.reply;
+            
+            chatWindow.removeChild(thinkingIndicator); // Remove "Thinking..."
+            appendMessage(botResponse, 'bot');
+
+        } catch (error) {
+            console.error("Error:", error);
+            chatWindow.removeChild(thinkingIndicator);
+            appendMessage("Sorry, I'm having trouble connecting to my brain right now. Please try again later.", 'bot');
+        }
     };
 
     const appendMessage = (text, type) => {
@@ -40,19 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type === 'bot') {
             const botLabel = document.createElement('span');
             botLabel.className = 'bot-label';
-            botLabel.innerText = 'FIONA (BOT):';
+            botLabel.innerText = 'FIONA (BOT):'; // Change to your name
             messageDiv.prepend(botLabel);
         }
 
         chatWindow.appendChild(messageDiv);
-        chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to bottom
-    };
-
-    const getBotResponse = (userText) => {
-        const lowerCaseText = userText.toLowerCase().replace(/[?]/g, '');
-        let response = botResponses[lowerCaseText] || botResponses["default"];
-        
-        appendMessage(response, 'bot');
+        chatWindow.scrollTop = chatWindow.scrollHeight;
     };
 
     // Event Listeners
